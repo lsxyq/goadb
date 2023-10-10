@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/lsxyq/goadb/internal/errors"
 	"github.com/stretchr/testify/assert"
-	"github.com/zach-klippenstein/goadb/internal/errors"
 )
 
 var (

@@ -3,9 +3,9 @@ package adb
 import (
 	"testing"
 
+	"github.com/lsxyq/goadb/internal/errors"
+	"github.com/lsxyq/goadb/wire"
 	"github.com/stretchr/testify/assert"
-	"github.com/zach-klippenstein/goadb/internal/errors"
-	"github.com/zach-klippenstein/goadb/wire"
 )
 
 func TestGetAttribute(t *testing.T) {

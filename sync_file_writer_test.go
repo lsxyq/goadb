@@ -8,8 +8,8 @@ import (
 	"encoding/binary"
 	"strings"
 
+	"github.com/lsxyq/goadb/wire"
 	"github.com/stretchr/testify/assert"
-	"github.com/zach-klippenstein/goadb/wire"
 )
 
 func TestFileWriterWriteSingleChunk(t *testing.T) {
@@ -48,7 +48,7 @@ func TestFileWriterWriteLargeChunk(t *testing.T) {
 
 	assert.NoError(t, err)
 	assert.Equal(t, wire.SyncMaxChunkSize+1, n)
-	assert.Equal(t, 8 + 8 + wire.SyncMaxChunkSize+1, buf.Len())
+	assert.Equal(t, 8+8+wire.SyncMaxChunkSize+1, buf.Len())
 
 	// First header.
 	chunk := buf.Bytes()[:8+wire.SyncMaxChunkSize]
@@ -58,7 +58,7 @@ func TestFileWriterWriteLargeChunk(t *testing.T) {
 	assert.Equal(t, data[:wire.SyncMaxChunkSize], chunk[8:])
 
 	// Second header.
-	chunk = buf.Bytes()[wire.SyncMaxChunkSize+8:wire.SyncMaxChunkSize+8+1]
+	chunk = buf.Bytes()[wire.SyncMaxChunkSize+8 : wire.SyncMaxChunkSize+8+1]
 	expectedHeader = []byte("DATA\000\000\000\000")
 	binary.LittleEndian.PutUint32(expectedHeader[4:], 1)
 	assert.Equal(t, expectedHeader, chunk[:8])
